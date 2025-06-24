@@ -5,7 +5,17 @@ This project simulates synthetic InSAR (Interferometric Synthetic Aperture Radar
 ---
 
 ## 📁 Project Structure
-
+InSAR_Phase_Modeling_Project/
+├── notebooks/
+│ └── phase_simulation_and_modeling.ipynb
+├── images/
+│ ├── simulated_deformation.png
+│ ├── wrapped_phase.png
+│ ├── unwrapped_phase.png
+│ ├── fitted_gaussian.png
+│ └── residual_error.png
+├── report.pdf
+└── README.md
 
 ---
 
