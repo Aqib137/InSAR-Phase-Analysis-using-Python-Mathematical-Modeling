@@ -1,105 +1,60 @@
-# 🛰️ InSAR Phase Analysis using Python + Mathematical Modeling
+# 🛰️ InSAR Phase Simulation and Deformation Modeling
 
-This project simulates synthetic InSAR (Interferometric Synthetic Aperture Radar) data to model ground deformation using mathematical and geophysical principles. The full process includes deformation modeling, phase wrapping, unwrapping, and Gaussian fitting — a mini pipeline that reflects core tasks in geodesy, remote sensing, and InSAR processing.
-
----
-
-
-
----
+This project simulates synthetic InSAR (Interferometric Synthetic Aperture Radar) phase data based on a modeled ground deformation event, performs phase unwrapping, and fits a physical model to interpret the deformation. It demonstrates key steps in satellite-based deformation monitoring aligned with modern geodesy and remote sensing techniques.
 
 ## 📌 Objectives
 
-- ✅ Simulate ground deformation (e.g., land subsidence)
-- ✅ Convert deformation to synthetic InSAR phase
-- ✅ Apply phase unwrapping using NumPy
-- ✅ Fit a physical (Gaussian) model to recover geophysical parameters
-- ✅ Visualize and validate with residual errors
+- Simulate a ground deformation event (e.g., subsidence)
+- Convert it to synthetic SAR phase using the radar wavelength
+- Perform 2D phase unwrapping
+- Fit a 2D Gaussian model to the deformation to extract physical parameters
+- Visualize results and residual errors
 
----
+## 🧪 Tools & Libraries
 
-## 🌍 Deformation Simulation
-
-A 2D Gaussian subsidence field is generated to mimic a realistic event like land sinking due to groundwater extraction.
-
-### 📷 Simulated Deformation
-
-![Simulated Deformation](images/simulated_deformation.png)
-
----
-
-## 🌈 Wrapped and Unwrapped Phase
-
-SAR satellites observe phase differences — but these are **wrapped** within `-π to +π`. We unwrap this to estimate actual displacement.
-
-### 📷 Wrapped Phase
-
-![Wrapped Phase](images/wrapped_phase.png)
-
-### 📷 Unwrapped Phase
-
-![Unwrapped Phase](images/unwrapped_phase.png)
-
----
-
-## 📐 Model Fitting: 2D Gaussian
-
-We fit a Gaussian model to the unwrapped deformation. This helps estimate the physical parameters:
-- **Amplitude**
-- **Deformation center (x, y)**
-- **Standard deviation (σx, σy)**
-
-### 📷 Fitted Model
-
-![Fitted Gaussian](images/fitted_gaussian.png)
-
-### 📷 Residual Error
-
-![Residual Error](images/residual_error.png)
-
----
-
-## 🧠 Results
-
-| Parameter     | Value (approx.)  |
-|---------------|------------------|
-| Amplitude     | -0.050 m         |
-| Center (x, y) | (0, 0)           |
-| Sigma         | (10, 10)         |
-
-Model fitting was accurate, with minimal residual error.
-
----
-
-## 📄 Report
-
-📥 [Click here to download the full project report (PDF)](report.pdf)
-
----
-
-## ⚙️ Tools & Libraries
-
-- Python 3.x
+- Python 3
 - NumPy
 - Matplotlib
 - SciPy
-- Jupyter Notebook
 
----
+## 🌀 Workflow
 
-## 👨‍💻 Author
+1. **Deformation Simulation**  
+   A Gaussian deformation is generated over a 2D grid simulating subsidence (~5 cm).
 
-**Syed Aqib Mehdi**  
-📧 aqibmehdi.dev@gmail.com  
-🔗 [LinkedIn](https://www.linkedin.com/in/YOUR_LINK) *(optional)*  
-🎯 PhD Applicant in Geodesy, Remote Sensing, and Quantum-Secure Systems
+2. **Phase Generation**  
+   The deformation is converted into wrapped phase values using Sentinel-1 radar wavelength (5.6 cm).
 
----
+3. **Phase Unwrapping**  
+   A basic 2D unwrapping algorithm using `np.unwrap()` is applied row- and column-wise.
 
-## 📜 License
+4. **Model Fitting**  
+   The recovered deformation is fitted with a 2D Gaussian model to retrieve amplitude, center, and spread.
 
-This project is licensed under the MIT License.
+## 📊 Sample Results
 
----
+| Simulation Stage       | Visualization |
+|------------------------|---------------|
+| Simulated Deformation  | ![Sim](images/simulated_deformation.png) |
+| Wrapped Phase          | ![Wrapped](images/wrapped_phase.png)     |
+| Unwrapped Phase        | ![Unwrapped](images/unwrapped_phase.png) |
+| Fitted Model           | ![Model](images/fitted_gaussian.png)     |
+| Residuals              | ![Residual](images/residual_error.png)   |
 
-> ⭐ *If you find this project useful, feel free to star the repo or share your feedback!*
+## 🔍 Physical Parameters Extracted
+
+- **Amplitude**: ~-0.05 m (subsidence)
+- **Center**: (x ≈ 0, y ≈ 0)
+- **Sigma**: ~10 units
+
+## 🧠 Insights
+
+This simple yet realistic simulation reflects how InSAR data is used in geodesy and satellite interferometry to monitor surface deformation, and demonstrates understanding of the entire chain: from data to model.
+
+## 📂 License
+
+MIT License
+
+## 📬 Contact
+
+Created by Syed Aqib Mehdi | Email: aqibmehdi510@gmail.com
